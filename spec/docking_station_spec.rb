@@ -10,16 +10,18 @@ describe DockingStation do
     expect(boris.working?).to eq true
   end
   it 'docks a bike' do
-    expect(docking_station).to respond_to(:accept).with(1).argument
+    expect(docking_station).to respond_to(:dock).with(1).argument
   end
-  # it 'stores bikes' do
-  #   bike = Bike.new
-  #   expect(docking_station.accept(bike)).to eq bike
-  # end
-  describe '#accept' do
-  docking_station.accept(Bike.new)
+
+  it 'reads attr_reader' do
+    expect(docking_station).to respond_to(:bikes)
+  end
+
+  describe '#dock' do
+  20.times { docking_station.dock Bike.new }
+  #docking_station.dock(Bike.new)
     it 'raises an error when station is at capacity' do
-      expect {docking_station.accept(Bike.new)}.to raise_error 'Station is at capacity'
+      expect {docking_station.dock(Bike.new)}.to raise_error 'Station is at capacity'
     end
   end
 end
