@@ -12,9 +12,3 @@ attr_reader :bike
   end
 
 end
-
-class Bike
-  def working?
-    true
-  end
-end
