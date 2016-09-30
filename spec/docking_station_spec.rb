@@ -19,15 +19,15 @@ describe DockingStation do
 
   describe '#dock' do
     it 'allow us to report a bike as broken when return it' do
-      bike = Bike.new(false)
+
       station = DockingStation.new
-      station.dock(bike)
+      station.dock double(:bike)
       expect(station.broken).to include(bike)
     end
 
     it 'raises an error when station is at capacity' do
-      DockingStation::DEFAULT_CAPACITY.times { docking_station.dock Bike.new }
-      expect {docking_station.dock(Bike.new)}.to raise_error 'Station is at capacity'
+      DockingStation::DEFAULT_CAPACITY.times { docking_station.dock double(:bike) }
+      expect {docking_station.dock(double(:bike))}.to raise_error 'Station is at capacity'
     end
 
     it "allows user to set capacity for a docking station" do
