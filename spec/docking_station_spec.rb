@@ -18,7 +18,7 @@ describe DockingStation do
   end
 
   describe '#dock' do
-  20.times { docking_station.dock Bike.new }
+  DockingStation::DEFAULT_CAPACITY.times { docking_station.dock Bike.new }
   #docking_station.dock(Bike.new)
     it 'raises an error when station is at capacity' do
       expect {docking_station.dock(Bike.new)}.to raise_error 'Station is at capacity'
@@ -30,5 +30,9 @@ describe '#release_bike' do
   it 'raises an error when no bikes available' do
     expect {docking_station.release_bike}.to raise_error 'No bike available'
   end
+
+ it "allows user to set capacity for a docking station" do
+   expect(DockingStation).to respond_to(:new).with(1).argument
+ end
 end
 #test
